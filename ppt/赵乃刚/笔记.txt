@@ -1,0 +1,102 @@
+对象的属性、方法、消息
+
+
+访问对象数据成员的方法：
+1.利用对象成员函数	st1.display();
+2.利用对象的指针	Time  t, *p; p= &t;
+3.利用对象的引用	Time &t2=t1;（Time &t2;t2=t1;错误）
+
+
+对象数据成员初始化
+1.若数据成员为公有	类名 对象名{数据成员参数表}；	Time  t1{15,36,26};
+2.构造函数
+
+
+构造函数
+（1）是特殊的成员函数，不需写调用语句，系
+统建立对象时自动调用执行，且只执行一次。
+（2）名字同类名。
+（3）无任何类型，不返回任何值。
+（4）参数可有可无。
+
+
+无参构造函数
+  1.类内定义
+Time()
+{hour=0;
+ minute=0;
+ sec=0;}
+  2.类内声明，类外定义
+Time::Time()
+{hour=0;
+ minute=0;
+ sec=0;}
+
+
+有参构造函数
+1.在构造函数体内对数据成员初始化
+Box::Box(int h,int w,int len)                              
+ {height=h; 
+   width=w;
+  length=len;      
+ }
+2.在构造函数首部实现数据成员初始化
+Box::Box( int h, int w, int len): height ( h),width(w), length( len ){  } 
+数据成员是按照它们在类中声明的顺序进行初始化的,与它们在参数初始化表中列出的顺序无关。
+
+
+构造函数的重载
+无参构造函数（默认构造函数）,有参构造函数可同时存在
+但默认构造函数为了避免二义性，常单独存在
+（只存在一个构造函数，该函数为默认构造函数）
+#include <iostream>
+using namespace std;
+class Box
+{public:
+   Box(int w=10,int h=10,int len=10);//声明构造函数时指定默认参数
+   int volume();
+ private:
+   int height;
+   int width;
+   int length;
+};
+int main()
+{
+ Box box1;                      		//全部默认值
+ cout<<"box1 体积"<<box1.volume()<<endl;
+ Box box2(15);               			//后两个默认值
+ cout<<"box2 体积 "<<box2.volume()<<endl;
+ Box box3(15,30);         			 //最后一个默认值
+ cout<<"box3 体积 "<<box3.volume()<<endl;
+ Box box4(15,30,20);     			//都不采用默认值
+ cout<<"box4 体积"<<box4.volume()<<endl;
+ return 0;
+}
+
+
+析构函数
+Student∷～student(){   }
+对同一类存储类别的对象
+先构造的后析构，后构造的先析构
+
+
+对象数组初始化
+1.如果构造函数有1个参数，在定义数组时可以直接在等号后面的花括号内提供实参。如
+    student  stud[3]={60,70,78};
+2.如果构造函数有多个参数，要在等号后的花括号中为每个对象分别写出构造函数并指定实参。
+student st[n]=
+{
+	student ( 实参1,实参2,实参3 )，
+	…  …
+ 	student ( 实参1,实参2,实参3 )
+ };
+
+
+对象指针
+指向对象的指针
+指向对象成员的指针
+this指针
+
+共用数据的保护
+
+		
